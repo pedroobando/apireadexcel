@@ -7,8 +7,12 @@
     "dev": "nodemon .",
     "start": "node ."
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mariadb",
+    "express",
+    "microsoft excel"
+  ],
+  "author": "Pedro Obando",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
