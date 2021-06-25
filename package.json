@@ -15,11 +15,12 @@
   "author": "Pedro Obando",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "chalk": "^4.1.1",
     "mariadb": "^2.5.3",
     "xlsx": "^0.17.0"
   },
   "devDependencies": {
+    "esbuild": "^0.12.9",
     "nodemon": "^2.0.7"
   }
 }

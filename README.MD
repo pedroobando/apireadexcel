@@ -10,6 +10,71 @@ El archivo excel se encuentra dentro del direcctoria /data y los datos o campos 
 
 Por otro lado solo en archivo database mantenine la connecion al servidor de base de datos MariaDb.
 
+## Creacion del contenedor docker Mariadb
+
+```bash
+# Crear contenedor de Mariadb, previamente debe estar descargada la imagen. mariadb/server:10.4
+
+$ docker run --name mariadbsrv -it --restart always -p 127.0.0.1:3306:3306  -e MARIADB_ROOT_PASSWORD=my-secret-pw -d mariadb/server:10.4
+
+# Guida de node Docker
+  https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
+
+# Entrar a un contenedor
+  $ docker exec -i -t contenedorId /bin/bash #
+  $ docker exec -i -t contenedorId /bin/sh # <= alpine
+
+# Extraer la base datos del contenedor
+  $ docker cp contenedorId:/app/logisticadb.sqlite  .
+
+# Copiar archivo al contenedor
+  $ docker cp nombredelarchivo  contenedorId:/rutadestino
+```
+
+## Comandos basicos de SQL p/MariaDb
+
+```bash
+# Comandos Mariadb - Entrar en base de datos.
+  $ mysql -u root -p
+
+# Visualizar las bases de datos en nuestro servidor.
+  > show databases;
+
+# Crear una base de datos nueva.
+  > CREATE DATABASE empresa CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+
+# Cambiar a base de datos.
+  > use empresa;
+
+# Crear una tabla y añadirle contenido.
+  > CREATE TABLE trabajadores (id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, nombre VARCHAR(20) NOT NULL, cedula INT UNSIGNED NOT NULL UNIQUE, RUC BIGINT(13) UNSIGNED NOT NULL UNIQUE, fecha_de_nacimiento DATE NOT NULL,salario_mensual DECIMAL(7, 2) UNSIGNED NOT NULL);
+
+  > CREATE TABLE productos (id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, codigo VARCHAR(20), nombre VARCHAR(20), precio DECIMAL(7, 2) SIGNED NOT NULL, costo DECIMAL(7, 2) SIGNED NOT NULL, existencia INT SIGNED NOT NULL);
+
+  > INSERT INTO trabajadores (id, nombre, cedula, RUC, fecha_de_nacimiento, salario_mensual) VALUES (NULL, "David", 1753664866, 1753664866001, "1983-01-01", 5316.50);
+
+  > SELECT * FROM trabajadores;
+
+  > SELECT * FROM trabajadores ORDER BY nombre ASC;
+
+# Mostrar la tablas dentro de una base de datos
+  > show full tables from mydatabase;
+
+# Mostrar la esctructura dentro de una tabla
+  > Describe trabajadores;
+
+# Eliminar fila de una tabla
+  > SELECT * FROM trabajadores;
+
+  > DELETE FROM trabajadores WHERE id = 1;
+
+  > SELECT * FROM trabajadores;
+
+# Borrar una tabla.
+  > drop table if exists trabajadores;
+
+```
+
 ## kill process active
 
 ```bash
