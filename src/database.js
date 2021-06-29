@@ -1,3 +1,4 @@
+const chalk = require('chalk');
 const mariadb = require('mariadb');
 
 const dataServer = {
@@ -21,7 +22,9 @@ const pool = mariadb.createPool(dataLocalhost);
 const getConnection = async () => {
   try {
     console.log(
-      `Conectando a SERVIDOR MariaDb Ip: ${dataServer.host} / ${dataServer.port}`
+      chalk.cyanBright(
+        `Conectando a SERVIDOR MariaDb Ip: ${dataServer.host} / port: ${dataServer.port}\n`
+      )
     );
     return await pool.getConnection();
   } catch (error) {
