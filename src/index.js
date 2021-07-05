@@ -1,10 +1,12 @@
 const chalk = require('chalk');
-const pool = require('./database');
+// const pool = require('./database');
+const pool = require('./cnnmssql');
 const { readExcel } = require('./readexcel');
 
 const actualizarBDAsync = async (tableName, data) => {
   const conn = await pool.getConnection();
 
+  return;
   try {
     let query2 = '';
     let rowsfind = '';
